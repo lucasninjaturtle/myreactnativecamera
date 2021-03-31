@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 var { width, height } = Dimensions.get("window")
 
-export default function App() {
+export default function App(props) {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
 
@@ -38,16 +38,16 @@ export default function App() {
           >
             <Text style={styles.text}> Flip </Text>
           </TouchableOpacity>
-
+        <View style={styles.triangleCam}>
           <View style={styles.buttonCam}>
-            <View style={styles.cambut}>
+            
             <TouchableOpacity onPress={() => console.log(props)}>
             <View style={{backgroundColor:'white'}}>
               <Ionicons style={styles.cam} name="camera" />
-          </View>
+              </View>
             </TouchableOpacity>
 
-            </View>
+          </View>
           </View>
         </View>
       </Camera>
@@ -79,17 +79,19 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   cam: {
-    color: "blue",
-    position:'absolute',
-    fontSize: 40,
-    marginTop:650,
-    marginLeft:width/1000
+    fontSize:40,
+    alignSelf:'center'
   },
   buttonCam:{
-    backgroundColor:'red',
-    width:41,
-
-
-    
-  }
+    borderRadius:100,
+  },
+  triangleCam:{
+    position:'absolute',
+    width:50,
+    fontSize: 40,
+    marginTop:650,
+    marginLeft:width/2.7,
+    borderRadius:10,
+    overflow:'hidden',
+  },
 });
