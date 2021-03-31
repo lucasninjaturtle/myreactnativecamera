@@ -1,7 +1,9 @@
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from "react-native";
+import { Camera } from "expo-camera";
+import { Ionicons } from "@expo/vector-icons";
 
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Camera } from 'expo-camera';
+var { width, height } = Dimensions.get("window")
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -10,7 +12,7 @@ export default function App() {
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
+      setHasPermission(status === "granted");
     })();
   }, []);
 
@@ -32,9 +34,21 @@ export default function App() {
                   ? Camera.Constants.Type.front
                   : Camera.Constants.Type.back
               );
-            }}>
+            }}
+          >
             <Text style={styles.text}> Flip </Text>
           </TouchableOpacity>
+
+          <View style={styles.buttonCam}>
+            <View style={styles.cambut}>
+            <TouchableOpacity onPress={() => console.log(props)}>
+            <View style={{backgroundColor:'white'}}>
+              <Ionicons style={styles.cam} name="camera" />
+          </View>
+            </TouchableOpacity>
+
+            </View>
+          </View>
         </View>
       </Camera>
     </View>
@@ -50,17 +64,32 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
+    backgroundColor: "transparent",
+    flexDirection: "row",
     margin: 20,
   },
   button: {
-    flex: 0.1,
-    alignSelf: 'flex-end',
-    alignItems: 'center',
+    flex: 0.5,
+    alignSelf: "flex-end",
+    alignItems: "center",
   },
   text: {
     fontSize: 18,
-    color: 'white',
+    color: "white",
+    margin: 5,
   },
+  cam: {
+    color: "blue",
+    position:'absolute',
+    fontSize: 40,
+    marginTop:650,
+    marginLeft:width/1000
+  },
+  buttonCam:{
+    backgroundColor:'red',
+    width:41,
+
+
+    
+  }
 });
