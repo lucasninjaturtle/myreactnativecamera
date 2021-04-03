@@ -34,23 +34,33 @@ export default function App(props) {
       <SafeAreaView style={styles.header}>
         <View>
         <View style={{flexDirection:'row'}}>
-            <Ionicons 
-            size={100}
-            name='camera'
-            color={'red'}
-            />
-             <Ionicons 
-            size={100}
-            name='camera'
-            color={'red'}
-            />
-
+            
         </View>
         </View>
       </SafeAreaView> 
         <View styles={styles.footer}>
-          <View style={{flexDirection:'row'}}>
+          <View style={{flexDirection:'row', marginBottom:10}}>
+
           <TouchableOpacity
+            
+          >
+            <View style={styles.otherButton}>
+              <View >
+            <Ionicons style={{color:'white'}} size={20} name="grid"></Ionicons>
+            </View>
+            </View>
+          </TouchableOpacity>
+          
+
+            <TouchableOpacity onPress={() => console.log(props)}>
+              <View style={styles.snapButton}>
+                <View style={styles.innerSnapButton}>
+                  <Ionicons style={{color:'white'}} size={30} name="camera" />
+                </View>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
             onPress={() => {
               setType(
                 type === Camera.Constants.Type.back
@@ -59,20 +69,12 @@ export default function App(props) {
               );
             }}
           >
-            <View style={styles.snapButton}>
+            <View style={styles.otherButton}>
               <View >
-            <Ionicons style={{color:'white'}} name="camera-reverse-outline"></Ionicons>
+            <Ionicons style={{color:'white'}} size={20} name="camera-reverse-outline"></Ionicons>
             </View>
             </View>
           </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => console.log(props)}>
-              <View style={styles.snapButton}>
-                <View style={styles.innerSnapButton}>
-                  <Ionicons style={{color:'white'}} name="camera" />
-                </View>
-              </View>
-            </TouchableOpacity>
             </View>
       </View>
     </Camera>
@@ -103,8 +105,18 @@ const styles = StyleSheet.create({
     alignItems:'center',
     margin:20,
   },
+  otherButton:{
+    width:64,
+    height:64,
+    borderRadius:32,
+    borderWidth:4,
+    borderColor:'transparent',
+    justifyContent:'center',
+    alignItems:'center',
+    margin:20,
+  },
   innerSnapButton:{
-    backgroundColor:'purple',
+    backgroundColor:'#f07167',
     width:52,
     height:52,
     borderRadius:25.5,
