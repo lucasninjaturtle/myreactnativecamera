@@ -33,8 +33,13 @@ export default function App(props) {
     <Camera style={styles.camera} type={type}>
       <SafeAreaView style={styles.header}>
         <View>
-        <View >
+        <View style={{flexDirection:'row'}}>
             <Ionicons 
+            size={100}
+            name='camera'
+            color={'red'}
+            />
+             <Ionicons 
             size={100}
             name='camera'
             color={'red'}
@@ -44,6 +49,7 @@ export default function App(props) {
         </View>
       </SafeAreaView> 
         <View styles={styles.footer}>
+          <View style={{flexDirection:'row'}}>
           <TouchableOpacity
             onPress={() => {
               setType(
@@ -53,7 +59,7 @@ export default function App(props) {
               );
             }}
           >
-            <View >
+            <View style={styles.snapButton}>
               <View >
             <Ionicons style={{color:'white'}} name="camera-reverse-outline"></Ionicons>
             </View>
@@ -67,6 +73,7 @@ export default function App(props) {
                 </View>
               </View>
             </TouchableOpacity>
+            </View>
       </View>
     </Camera>
   );
@@ -83,7 +90,7 @@ const styles = StyleSheet.create({
     alignSelf:'auto',
   },
   header:{
-    flexDirection:'row',
+    flexDirection:"row",
     justifyContent:'space-between',
   },
   snapButton:{
