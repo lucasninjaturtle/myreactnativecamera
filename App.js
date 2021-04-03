@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+  SafeAreaView,
+} from "react-native";
 import { Camera } from "expo-camera";
 import { Ionicons } from "@expo/vector-icons";
 
-var { width, height } = Dimensions.get("window")
+var { width, height } = Dimensions.get("window");
 
 export default function App(props) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -17,17 +24,27 @@ export default function App(props) {
   }, []);
 
   if (hasPermission === null) {
-    return <View />;
+    return <View style={{backgroundColor:'red'}}/>;
   }
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
   return (
-    
-      <Camera style={styles.camera} type={type}>
-        <SafeAreaView style={styles.buttonContainer}>
+    <Camera style={styles.camera} type={type}>
+      <SafeAreaView style={styles.header}>
+        <View>
+        <View >
+            <Ionicons 
+            size={100}
+            name='camera'
+            color={'red'}
+            />
+
+        </View>
+        </View>
+      </SafeAreaView> 
+        <View styles={styles.footer}>
           <TouchableOpacity
-            style={styles.button}
             onPress={() => {
               setType(
                 type === Camera.Constants.Type.back
@@ -36,61 +53,55 @@ export default function App(props) {
               );
             }}
           >
-            <Text style={styles.text}> Flip </Text>
+            <View >
+              <View >
+            <Ionicons style={{color:'white'}} name="camera-reverse-outline"></Ionicons>
+            </View>
+            </View>
           </TouchableOpacity>
-        <View style={styles.triangleCam}>
-          <View style={styles.buttonCam}>
-            
+
             <TouchableOpacity onPress={() => console.log(props)}>
-            <View style={{backgroundColor:'white'}}>
-              <Ionicons style={styles.cam} name="camera" />
+              <View style={styles.snapButton}>
+                <View style={styles.innerSnapButton}>
+                  <Ionicons style={{color:'white'}} name="camera" />
+                </View>
               </View>
             </TouchableOpacity>
-
-          </View>
-          </View>
-        </SafeAreaView>
-      </Camera>
+      </View>
+    </Camera>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   camera: {
-    flex: 1,
+    flex:1,
+    alignItems:"center",
+    justifyContent:'space-between',
   },
-  buttonContainer: {
-    flex: 1,
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    margin: 20,
+  footer: {
+    flexDirection:'row',
+    alignSelf:'auto',
   },
-  button: {
-    flex: 0.5,
-    alignSelf: "flex-end",
-    alignItems: "center",
+  header:{
+    flexDirection:'row',
+    justifyContent:'space-between',
   },
-  text: {
-    fontSize: 18,
-    color: "white",
-    margin: 5,
+  snapButton:{
+    width:64,
+    height:64,
+    borderRadius:32,
+    borderWidth:4,
+    borderColor:'white',
+    justifyContent:'center',
+    alignItems:'center',
+    margin:20,
   },
-  cam: {
-    fontSize:40,
-    alignSelf:'center'
-  },
-  buttonCam:{
-    borderRadius:100,
-  },
-  triangleCam:{
-    position:'absolute',
-    width:50,
-    fontSize: 40,
-    marginTop:650,
-    marginLeft:width/2.7,
-    borderRadius:10,
-    overflow:'hidden',
-  },
+  innerSnapButton:{
+    backgroundColor:'purple',
+    width:52,
+    height:52,
+    borderRadius:25.5,
+    justifyContent:'center',
+    alignItems:'center',
+  }
 });
