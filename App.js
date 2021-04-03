@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, SafeAreaView } from "react-native";
 import { Camera } from "expo-camera";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -23,9 +23,9 @@ export default function App(props) {
     return <Text>No access to camera</Text>;
   }
   return (
-    <View style={styles.container}>
+    
       <Camera style={styles.camera} type={type}>
-        <View style={styles.buttonContainer}>
+        <SafeAreaView style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -49,9 +49,8 @@ export default function App(props) {
 
           </View>
           </View>
-        </View>
+        </SafeAreaView>
       </Camera>
-    </View>
   );
 }
 
